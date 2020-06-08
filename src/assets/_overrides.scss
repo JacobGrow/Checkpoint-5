@@ -1,0 +1,22 @@
+.btn-primary {
+  color: $light;
+  background-color: $primary;
+  border-color: darken($color: $primary, $amount: 10);
+  border-width: medium;
+}
+
+.card-height {
+  min-height: 25rem;
+}
+
+.text-area{
+  height: 12em;
+  max-width: 100%;
+  width: 100%;
+}
+
+.underline {
+  text-decoration: underline;
+  cursor: pointer;
+}
+

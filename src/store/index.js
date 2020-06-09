@@ -26,9 +26,18 @@ export default new Vuex.Store({
       state.activeBlog = blog;
     },
 
+    setMyBlogs(state, blogs) {
+      state.myBlogs = blogs
+    },
+
     addBlog(state, data) {
       state.blogs.push(data)
+    },
+
+    setComments(state, comments){
+      state.comments = comments;
     }
+
   },
   actions: {
     setBearer({}, bearer) {
@@ -54,6 +63,21 @@ export default new Vuex.Store({
       }
     },
 
+    async getMyBlogs({ commit, dispatch}) {
+      try {
+        let res = await api.get("profile/blogs")
+        commit("setMyBlogs", res.data)
+      } catch (error) {
+        console.error(error)
+      }
+    },
+
+    // async getComments({ commit, dispatch }, id) {
+    //   try {
+        
+    //   }
+    // },
+
     async getBlogDetails({ commit, dispatch }, id) {
       try {
         let res = await api.get("blogs/" + id);
@@ -70,6 +94,24 @@ export default new Vuex.Store({
       dispatch("getAllBlogs")
       } catch (error) {
         console.error(error);
+      }
+    },
+
+    async deleteBlog({ commit, dispatch }, _id) {
+      try {
+        let res = await api.delete("blogs/" + _id);
+        dispatch("getAllBlogs");
+      } catch (error) {
+        console.error(error)
+      }
+    },
+
+    async editBlog({ commit, dispatch}, blog) {
+      try {
+        let res = await api.put("blogs/" + blog.id, blog.editBlog)
+        commit('addBlog', res.data)
+      } catch (error) {
+        console.error(error)
       }
     }
   },

@@ -6,7 +6,7 @@
 }
 
 .card-height {
-  min-height: 25rem;
+  min-height: 20rem;
 }
 
 .text-area{
@@ -15,8 +15,13 @@
   width: 100%;
 }
 
+
 .underline {
   text-decoration: underline;
   cursor: pointer;
+}
+
+.hidden {
+  display: none;
 }
 
